@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>شغل قريب — لقى خدمة حداك</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF3F2;--card:#fff;--ink:#14232B;--mute:#63777F;--line:#DCE5E4;--pri:#0A6B5C;--pri-d:#07493F;--pri-s:#DDF1EC;--acc:#F2A52E;--acc-s:#FFF1D6;--ok:#1B8A4B;--bad:#C0392B;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1719;--card:#17242A;--ink:#EAF2F1;--mute:#93A8AE;--line:#27373D;--pri:#2FB59E;--pri-d:#1F8F7B;--pri-s:#143A34;--acc-s:#3A2E14}}
+:root[data-theme="dark"]{--bg:#0E1719;--card:#17242A;--ink:#EAF2F1;--mute:#93A8AE;--line:#27373D;--pri:#2FB59E;--pri-d:#1F8F7B;--pri-s:#143A34;--acc-s:#3A2E14}
+*{box-sizing:border-box;margin:0;font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);display:flex;justify-content:center;align-items:center}
+button{border:0;background:none;color:inherit;cursor:pointer;font-size:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.app{width:100%;max-width:420px;height:100%;max-height:860px;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+@media(min-width:500px){.app{border-radius:28px;border:1px solid var(--line);height:92%;box-shadow:0 20px 50px rgba(0,0,0,.12)}}
+main{flex:1;overflow-y:auto;padding:16px 16px 24px}
+nav{display:flex;background:var(--card);border-top:1px solid var(--line);padding:6px 4px}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--mute);padding:6px 0;border-radius:12px}
+nav button span{font-size:19px}
+nav button.on{color:var(--pri);font-weight:700}
+nav button.post span{background:var(--acc);color:#2b1c00;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;margin-top:-18px;font-size:24px;font-weight:700;border:4px solid var(--bg)}
+h1{font-size:22px;font-weight:700;line-height:1.4}
+h2{font-size:16px;font-weight:700;margin:20px 0 10px;display:flex;justify-content:space-between;align-items:center}
+h2 small{font-size:12px;color:var(--pri);font-weight:500}
+.hero{background:var(--pri);color:#fff;border-radius:20px;padding:18px;margin-bottom:14px}
+.hero p{opacity:.85;font-size:13px;margin-bottom:4px}
+.search{display:flex;gap:8px;background:#fff;border-radius:14px;padding:4px 12px;margin-top:14px;align-items:center}
+.search input{flex:1;border:0;padding:10px 0;font-size:14px;background:none;color:#14232B}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.chip{flex:none;padding:8px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:13px;white-space:nowrap}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px}
+.cat.on{border-color:var(--pri);background:var(--pri-s)}
+.cat span{font-size:22px}
+.job{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px;display:block;width:100%;text-align:start}
+.job .t{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.job b{font-size:15px}
+.job .biz{font-size:12px;color:var(--mute);margin-top:2px}
+.pay{font-weight:700;color:var(--pri);font-size:14px;white-space:nowrap}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:11.5px;padding:4px 9px;border-radius:99px;background:var(--bg);color:var(--mute)}
+.tag.d{background:var(--acc-s);color:#8a5a00;font-weight:600}
+@media(prefers-color-scheme:dark){.tag.d{color:#F2C46B}}
+.ver{color:var(--pri);font-size:12px;font-weight:600}
+.btn{display:block;width:100%;background:var(--pri);color:#fff;padding:14px;border-radius:14px;font-weight:700;font-size:15px;text-align:center}
+.btn:disabled{background:var(--line);color:var(--mute)}
+.btn.sec{background:var(--pri-s);color:var(--pri)}
+.save{font-size:18px;padding:4px}
+.sheet{position:absolute;inset:0;background:rgba(10,20,25,.5);display:flex;align-items:flex-end;z-index:5}
+.sheet>div{background:var(--card);width:100%;border-radius:24px 24px 0 0;padding:20px 18px 24px;max-height:88%;overflow-y:auto}
+.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row span:first-child{color:var(--mute)}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 6px}
+input.f,select.f,textarea.f{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.map{height:130px;border-radius:16px;background:var(--pri-s);position:relative;overflow:hidden;margin:12px 0;border:1px solid var(--line)}
+.map i{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--acc);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.map .me{background:var(--pri);width:18px;height:18px;left:50%;top:50%;margin:-9px}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.st{font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.st.w{background:var(--acc-s);color:#8a5a00}.st.a{background:#DFF3E7;color:var(--ok)}.st.r{background:#FBE4E1;color:var(--bad)}
+.msg{display:flex;gap:12px;align-items:center;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:8px;width:100%;text-align:start}
+.av{width:44px;height:44px;border-radius:50%;background:var(--pri-s);color:var(--pri);display:grid;place-items:center;font-weight:700;flex:none}
+.bub{max-width:78%;padding:10px 13px;border-radius:16px;font-size:14px;margin-bottom:8px;line-height:1.6}
+.bub.me{background:var(--pri);color:#fff;margin-inline-start:auto;border-end-start-radius:4px}
+.bub.o{background:var(--card);border:1px solid var(--line);border-end-end-radius:4px}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.stat div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 4px;text-align:center}
+.stat b{display:block;font-size:18px;color:var(--pri)}.stat small{font-size:11px;color:var(--mute)}
+.toast{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:13px;z-index:9}
+.back{font-size:14px;color:var(--pri);font-weight:600;margin-bottom:12px}
+.empty{text-align:center;color:var(--mute);padding:40px 10px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="app">
+  <main id="main"></main>
+  <nav id="nav"></nav>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const cats=[['الكل','✨'],['مطاعم','🍽️'],['توصيل','🛵'],['محلات','🏪'],['فعاليات','🎪'],['بناء','🧱'],['موسمي','🌾'],['طلبة','🎓']];
+let jobs=[
+{id:1,t:'عامل في مطعم',b:'مطعم الأصيل',c:'مطاعم',d:1.2,p:3000,h:6,date:'السبت',v:1,n:2,desc:'خدمة الزبائن وتحضير الطاولات. لا تحتاج خبرة.',req:'لا خبرة مطلوبة'},
+{id:2,t:'مساعد في فعالية',b:'منظم أعراس الواحة',c:'فعاليات',d:2.4,p:3500,h:8,date:'الجمعة',v:1,n:4,desc:'تنظيم الضيوف وترتيب القاعة.',req:'لباقة وانضباط'},
+{id:3,t:'مساعد توصيل',b:'بيتزا السلام',c:'توصيل',d:3.1,p:2500,h:5,date:'اليوم',v:0,n:1,desc:'توصيل الطلبات داخل المدينة.',req:'دراجة نارية + رخصة'},
+{id:4,t:'بائع في محل ملابس',b:'بوتيك نور',c:'محلات',d:4,p:2800,h:7,date:'الأحد',v:1,n:1,desc:'استقبال الزبائن والترتيب والصندوق.',req:'حسن التعامل'},
+{id:5,t:'عامل جني الزيتون',b:'مزرعة بن عيسى',c:'موسمي',d:6.5,p:3200,h:8,date:'الاثنين',v:0,n:6,desc:'جني الزيتون مع وجبة غداء.',req:'قدرة بدنية'},
+{id:6,t:'عامل بناء مساعد',b:'ورشة الإخوة',c:'بناء',d:7.8,p:4000,h:8,date:'غدًا',v:0,n:3,desc:'مساعدة البنّاء ونقل المواد.',req:'خبرة بسيطة'}];
+let st={tab:'home',cat:'الكل',q:'',maxd:10,minp:0,saved:new Set([3]),applied:{1:'w',4:'a'},chat:null,open:null,done:0};
+let chats={'مطعم الأصيل':[['o','أهلًا! وصلنا طلبك للسبت، تقدر تجي 10 صباحًا؟']],'بوتيك نور':[['o','تم قبولك 🎉 نبدأ الأحد على 9:00']]};
+const tabs=[['home','الرئيسية','🏠'],['explore','استكشف','🗺️'],['post','انشر','+'],['apps','طلباتي','📄'],['msgs','الرسائل','💬'],['me','حسابي','👤']];
+const fmt=n=>n.toLocaleString('ar-DZ');
+const filt=()=>jobs.filter(j=>(st.cat==='الكل'||j.c===st.cat)&&j.d<=st.maxd&&j.p>=st.minp&&(j.t+j.b+j.c).includes(st.q));
+function card(j){return `<div class="job" role="button" tabindex="0" onclick="openJob(${j.id})"><div class="t"><div><b>${j.t}</b><div class="biz">${j.b} ${j.v?'<span class="ver">✔ موثّق</span>':''}</div></div><div class="pay">${fmt(j.p)} دج</div></div><div class="meta"><span class="tag d">📍 ${fmt(j.d)} كم</span><span class="tag">📅 ${j.date}</span><span class="tag">⏱ ${fmt(j.h)} ساعات</span><span class="tag">${j.c}</span></div></div>`}
+function catsRow(){return `<div class="chips">${cats.map(c=>`<button class="chip ${st.cat===c[0]?'on':''}" onclick="st.cat='${c[0]}';render()">${c[1]} ${c[0]}</button>`).join('')}</div>`}
+const V={
+home(){const l=filt();return `<div class="hero"><p>مرحبًا يا أمين 👋</p><h1>لقى خدمة حداك، وقت ما تحتاجها</h1><div class="search"><span>🔎</span><input id="q" placeholder="ابحث: نادل، توصيل، بائع…" value="${st.q}" oninput="st.q=this.value;sq()"></div></div>
+<h2>التصنيفات</h2><div class="cats">${cats.slice(0,8).map(c=>`<button class="cat ${st.cat===c[0]?'on':''}" onclick="st.cat='${c[0]}';render()"><span>${c[1]}</span>${c[0]}</button>`).join('')}</div>
+<h2>وظائف قريبة منك <small onclick="go('explore')" role="button">عرض الكل</small></h2><div id="lst">${l.slice(0,4).map(card).join('')||'<div class="empty">ما كاين حتى وظيفة بهاد الفلتر</div>'}</div>
+<h2>مقترحة لك</h2>${[...jobs].sort((a,b)=>b.p-a.p).slice(0,2).map(card).join('')}`},
+explore(){const l=filt().sort((a,b)=>a.d-b.d);const dots=l.map((j,i)=>`<i style="left:${15+(i*53)%70}%;top:${18+(i*37)%60}%"></i>`).join('');
+return `<h1>استكشف الوظائف</h1>${catsRow()}<div class="map"><svg viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M0 28 C30 10 50 38 100 12" stroke="#fff" stroke-width="3" fill="none" opacity=".7"/><path d="M40 0 C45 20 60 25 55 40" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/></svg>${dots}<i class="me"></i></div>
+<div class="two"><div><label>المسافة: حتى ${fmt(st.maxd)} كم</label><input type="range" min="1" max="10" value="${st.maxd}" oninput="st.maxd=+this.value;render(1)" style="width:100%;accent-color:var(--pri)"></div>
+<div><label>أقل أجرة</label><select class="f" onchange="st.minp=+this.value;render(1)">${[0,2500,3000,3500].map(v=>`<option value="${v}" ${st.minp===v?'selected':''}>${v?fmt(v)+' دج':'بدون حد'}</option>`).join('')}</select></div></div>
+<h2>${fmt(l.length)} وظيفة متاحة</h2>${l.map(card).join('')||'<div class="empty">وسّع المسافة أو خفّض الأجرة لتظهر نتائج أكثر</div>'}`},
+post(){return `<h1>انشر وظيفة في أقل من دقيقة</h1><label>عنوان الوظيفة</label><input class="f" id="pt" placeholder="مثال: عامل في مطعم">
+<div class="two"><div><label>المدينة</label><select class="f" id="pc"><option>الشلف</option><option>وهران</option><option>الجزائر</option><option>عنابة</option></select></div><div><label>التصنيف</label><select class="f" id="pk">${cats.slice(1).map(c=>`<option>${c[0]}</option>`).join('')}</select></div></div>
+<div class="two"><div><label>الأجرة (دج/اليوم)</label><input class="f" id="pp" type="number" inputmode="numeric" value="3000"></div><div><label>عدد الساعات</label><input class="f" id="ph" type="number" inputmode="numeric" value="6"></div></div>
+<div class="two"><div><label>التاريخ</label><select class="f" id="pd"><option>اليوم</option><option>غدًا</option><option>السبت</option><option>الأحد</option></select></div><div><label>عدد العمال</label><input class="f" id="pn" type="number" inputmode="numeric" value="1"></div></div>
+<label>الشروط</label><input class="f" id="pr" placeholder="مثال: لا خبرة مطلوبة"><label>وصف مختصر</label><textarea class="f" id="px" rows="3" placeholder="ماذا سيعمل العامل؟"></textarea>
+<div style="height:16px"></div><button class="btn" onclick="pub()">انشر الوظيفة</button>`},
+apps(){const m={w:['قيد المراجعة','w'],a:['تم قبولك','a'],r:['مرفوض','r']};const ids=Object.keys(st.applied);
+return `<h1>طلباتي</h1><div style="height:12px"></div>${ids.length?ids.map(i=>{const j=jobs.find(x=>x.id==i);const s=m[st.applied[i]];return `<div class="job"><div class="t"><div><b>${j.t}</b><div class="biz">${j.b}</div></div><span class="st ${s[1]}">${s[0]}</span></div><div class="meta"><span class="tag">📅 ${j.date}</span><span class="tag">${fmt(j.p)} دج</span></div>${st.applied[i]==='a'?`<button class="btn sec" style="margin-top:12px;padding:10px" onclick="st.done=1;toast('تم! قيّم صاحب العمل ⭐');">أنهيت العمل — قيّم</button>`:''}</div>`}).join(''):'<div class="empty">ما قدمت على حتى وظيفة بعد. ابدأ من الرئيسية.</div>'}`},
+msgs(){if(st.chat){const c=chats[st.chat];return `<button class="back" onclick="st.chat=null;render()">‹ رجوع</button><h1 style="margin-bottom:14px">${st.chat}</h1><div id="cb">${c.map(m=>`<div class="bub ${m[0]}">${m[1]}</div>`).join('')}</div><div style="display:flex;gap:8px;margin-top:10px"><input class="f" id="ci" placeholder="اكتب رسالة…" onkeydown="if(event.key==='Enter')send()"><button class="btn" style="width:auto;padding:0 20px" onclick="send()">إرسال</button></div>`}
+return `<h1>الرسائل</h1><div style="height:12px"></div>${Object.keys(chats).map(k=>{const l=chats[k][chats[k].length-1];return `<button class="msg" onclick="st.chat='${k}';render()"><div class="av">${k[0]===' '?'؟':k.split(' ')[1]?k.split(' ')[1][0]:k[0]}</div><div><b>${k}</b><div class="biz" style="font-size:13px;color:var(--mute)">${l[1].slice(0,38)}…</div></div></button>`}).join('')}`},
+me(){return `<div class="hero" style="display:flex;gap:14px;align-items:center"><div class="av" style="width:60px;height:60px;font-size:24px;background:#fff">أ</div><div><h1>أمين بن علي</h1><p style="margin:2px 0 0">📍 الشلف · متاح هذا الأسبوع</p></div></div>
+<div class="stat"><div><b>★ 4.8</b><small>التقييم</small></div><div><b>${fmt(12)}</b><small>عمل منجز</small></div><div><b>${fmt(Object.keys(st.applied).length)}</b><small>طلباتي</small></div></div>
+<h2>المهارات</h2><div class="meta" style="margin:0">${['خدمة زبائن','توصيل','ترتيب','عمل جماعي','عربية','فرنسية'].map(s=>`<span class="tag" style="background:var(--pri-s);color:var(--pri)">${s}</span>`).join('')}</div>
+<h2>الخبرة</h2><div class="job"><b>نادل — مقهى الجسر</b><div class="biz">8 أشهر · تقييم ★ 4.9</div></div>
+<h2>التوفر</h2><div class="chips">${['س','أ','ن','ث','ر','خ','ج'].map((d,i)=>`<span class="chip ${i<5?'on':''}" style="width:40px;text-align:center">${d}</span>`).join('')}</div>
+<h2>التوثيق</h2><div class="job"><div class="row" style="border:0"><span>رقم الهاتف</span><span class="ver">✔ تم التوثيق</span></div><div class="row"><span>الهوية</span><button class="ver" style="color:var(--acc)" onclick="toast('سيُفتح التقاط صورة الهوية')">وثّق الآن</button></div></div>`}
+};
+function openJob(id){const j=jobs.find(x=>x.id===id);const a=st.applied[id];const s=st.saved.has(id);
+const d=document.createElement('div');d.className='sheet';d.onclick=e=>{if(e.target===d)d.remove()};
+d.innerHTML=`<div role="dialog" aria-label="${j.t}"><div class="t" style="display:flex;justify-content:space-between"><div><h1>${j.t}</h1><div class="biz" style="color:var(--mute);font-size:13px">${j.b} ${j.v?'<span class="ver">✔ موثّق</span>':''} · ★ 4.7</div></div><button class="save" aria-label="حفظ" onclick="sv(${id},this)">${s?'❤️':'🤍'}</button></div><div style="height:10px"></div>
+<div class="row"><span>الأجرة</span><b>${fmt(j.p)} دج / اليوم</b></div><div class="row"><span>المسافة</span><b>${fmt(j.d)} كم</b></div><div class="row"><span>التاريخ</span><b>${j.date}</b></div><div class="row"><span>المدة</span><b>${fmt(j.h)} ساعات</b></div><div class="row"><span>العمال المطلوبون</span><b>${fmt(j.n)}</b></div><div class="row"><span>الشروط</span><b>${j.req}</b></div>
+<p style="margin:14px 0;font-size:14px;line-height:1.8;color:var(--mute)">${j.desc}</p>
+<button class="btn" ${a?'disabled':''} onclick="apply(${id},this)">${a?'تم إرسال طلبك':'قدّم الآن'}</button></div>`;
+$('.app').appendChild(d)}
+function apply(id,b){st.applied[id]='w';if(!chats[jobs.find(x=>x.id===id).b])chats[jobs.find(x=>x.id===id).b]=[['o','وصلنا طلبك، سنرد عليك قريبًا 👍']];b.disabled=true;b.textContent='تم إرسال طلبك';toast('تم إرسال الطلب لصاحب العمل')}
+function sv(id,b){st.saved.has(id)?st.saved.delete(id):st.saved.add(id);b.textContent=st.saved.has(id)?'❤️':'🤍'}
+function pub(){const t=$('#pt').value.trim();if(!t){toast('اكتب عنوان الوظيفة أولًا');return}
+jobs.unshift({id:Date.now(),t,b:'أنا — '+$('#pc').value,c:$('#pk').value,d:0.5,p:+$('#pp').value||0,h:+$('#ph').value||0,date:$('#pd').value,v:0,n:+$('#pn').value||1,desc:$('#px').value||'—',req:$('#pr').value||'بدون شروط'});
+st.cat='الكل';toast('تم النشر! سيراها العمال القريبون');go('home')}
+function send(){const i=$('#ci');if(!i.value.trim())return;chats[st.chat].push(['me',i.value]);const k=st.chat;i.value='';render();setTimeout(()=>{chats[k].push(['o','تمام، شكرًا على ردك 🙏']);if(st.chat===k&&st.tab==='msgs')render()},1200)}
+function sq(){const l=filt().slice(0,4);$('#lst').innerHTML=l.map(card).join('')||'<div class="empty">ما كاين نتائج بهاد الكلمة</div>'}
+function toast(m){document.querySelectorAll('.toast').forEach(x=>x.remove());const t=document.createElement('div');t.className='toast';t.textContent=m;$('.app').appendChild(t);setTimeout(()=>t.remove(),2200)}
+function go(t){st.tab=t;st.chat=null;render()}
+function render(keep){$('#nav').innerHTML=tabs.map(t=>`<button class="${t[0]==='post'?'post':''} ${st.tab===t[0]?'on':''}" onclick="go('${t[0]}')"><span>${t[2]}</span>${t[1]}</button>`).join('');
+const m=$('#main');const y=m.scrollTop;m.innerHTML=V[st.tab]();m.scrollTop=keep?y:0}
+render();
+</script>
+</body>
+</html>
